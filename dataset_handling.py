@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
-
+# import bsm
+# import greeks
 import datetime
 
 def data_preprocessing(csv_file_path):
@@ -15,21 +16,36 @@ def data_preprocessing(csv_file_path):
     # df = pd.read_csv(csv_file_path)
     
     # Check for any invalid date entries
-    if df['expiry_date'].isnull().any():
+    if df['Expiry Date'].isnull().any():
         raise ValueError("There are invalid date entries in the expiry_date column in the CSV file.")
 
     # Ensure the expiry date column is in datetime format
-    df['expiry_date'] = pd.to_datetime(df['expiry_date'], format='%d-%m-%Y', errors='raise')
+    df['Expiry Date'] = pd.to_datetime(df['Expiry Date'], format='%Y-%m-%d', errors='raise')
 
     # Convert 'current_date' column to datetime
-    df['current_date'] = pd.to_datetime(df['current_date'], format='%d-%m-%Y', errors='coerce')
+    df['Current Date'] = pd.to_datetime(df['Current Date'], format='%Y-%m-%d', errors='coerce')
 
 # Fill NaT values with the current date
     current_date = datetime.datetime.now().strftime('%d-%m-%Y')
-    df['current_date'].fillna(pd.to_datetime(current_date, format='%d-%m-%Y'), inplace=True)
+    df['Current Date'].fillna(pd.to_datetime(current_date, format='%Y-%m-%d'), inplace=True)
+    
+    # # # Fill missing current_date with the current date
+    # if df['current_date'].str.contains('NaT') == True:
+    #     current_date = datetime.datetime.now().strftime('%d-%m-%Y')
+    #     df['current_date'] = pd.to_datetime(df['current_date'], format='%d-%m-%Y', errors='coerce')
+    #     df['current_date'].fillna(pd.to_datetime(current_date), inplace=True)
+    # else:
+    #     df['current_date'] = pd.to_datetime(df['current_date'], format='%d-%m-%Y', errors='coerce')
+
+    # # Fill missing current_date with the current date
+    # current_date = datetime.datetime.now().strftime('%Y-%m-%d')
+    # df['current_date'] = pd.to_datetime(df['current_date'], format='%Y-%m-%d', errors='coerce')
+    # df['current_date'].fillna(pd.to_datetime(current_date), inplace=True)
+    
+    
     
     # Calculate the difference in days
-    df['days_difference'] = (df['expiry_date'] - df['current_date']).dt.days
+    df['days_difference'] = (df['Expiry Date'] - df['Current Date']).dt.days
     
     # Check for cases where the current date is ahead of the expiry date
     invalid_rows = df[df['days_difference'] <= 0]
@@ -43,11 +59,17 @@ def data_preprocessing(csv_file_path):
         S = row['Stock Price']
         E = row['Strike Price']
         O = row['Option Type']
-        cd = row['current_date']
-        ed = row['expiry_date']
+        cd = row['Current Date']
+        ed = row['Expiry Date']
         tau = row['days_difference'] / 365
         
-        r = row['Risk-Free Rate'] / 100  # Convert percentage to decimal
+        r = row['Risk Free Rate'] / 100  # Convert percentage to decimal
+
+        # if 'Dividend Yield' in df.index:
+        #     D = row['Dividend Yield'] / 100  # Convert percentage to decimal
+        # else:
+        #     df['Dividend Yield'] = 0
+
 
         sigma = row['Volatility'] / 100  # Convert percentage to decimal
 
@@ -69,26 +91,6 @@ def data_preprocessing(csv_file_path):
     # Create a DataFrame with the results
     results_df = pd.DataFrame(results, index=df.index)
     return results_df
-
-
-        # if 'Dividend Yield' in df.index:
-        #     D = row['Dividend Yield'] / 100  # Convert percentage to decimal
-        # else:
-        #     df['Dividend Yield'] = 0
-
-    # # # Fill missing current_date with the current date
-    # if df['current_date'].str.contains('NaT') == True:
-    #     current_date = datetime.datetime.now().strftime('%d-%m-%Y')
-    #     df['current_date'] = pd.to_datetime(df['current_date'], format='%d-%m-%Y', errors='coerce')
-    #     df['current_date'].fillna(pd.to_datetime(current_date), inplace=True)
-    # else:
-    #     df['current_date'] = pd.to_datetime(df['current_date'], format='%d-%m-%Y', errors='coerce')
-
-    # # Fill missing current_date with the current date
-    # current_date = datetime.datetime.now().strftime('%Y-%m-%d')
-    # df['current_date'] = pd.to_datetime(df['current_date'], format='%Y-%m-%d', errors='coerce')
-    # df['current_date'].fillna(pd.to_datetime(current_date), inplace=True)
-
 
 # dataset = data_preprocessing(r"C:\Users\sahil\Desktop\SOC Project\testing\up_option_dataset(1).csv")
 
