@@ -15,7 +15,9 @@ A Python package for pricing of options using BSM (Black Scholes Mertens model).
 - [How to Build a Complete Python Package Step-by-Step (Video)](https://www.youtube.com/watch?v=5KEObONUkik)
 - [Publish Your Own Python Package (Video)](https://www.youtube.com/watch?v=tEFkHEKypLI)
 
-## Miscellaneous
+## Miscellaneous:
+
+This project aims for making a python package for stock analysis.
 
 ### GitHub Tutorial
 - [Create a Repo & Push Code to Repo](https://www.youtube.com/watch?v=vpRkAoCqX3o)
