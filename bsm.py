@@ -36,11 +36,7 @@ def put_option_price(S, E, tau, r, sigma, D):
 
 # Function to calculate option prices for each row in a DataFrame
 def calculate_option_prices_for_dataframe(df):
-    # Calculate d1 and d2 values
-    # df['d1'] = df.apply(lambda row: d1(row['Stock Price'], row['Strike Price'], row['tau'], row['Risk-Free Rate'], row['Volatility'], D), axis=1)
-    # df['d2'] = df.apply(lambda row: d2(row['Stock Price'], row['Strike Price'], row['tau'], row['Risk-Free Rate'], row['Volatility'], D), axis=1)
 
-    # Calculate call and put option values
     df['Call Option Value'] = np.where(df['Option Type'].str.upper().isin(['CALL', 'C']),
                                        df.apply(lambda row: call_option_price(row['Stock Price'], row['Strike Price'], row['tau'], row['Risk-Free Rate'], row['Volatility'], D), axis=1),
                                        np.nan)
@@ -94,6 +90,11 @@ def option_pricing(csv, csv_file_path = None ,input_data=None):
         
 
         
+    # Calculate d1 and d2 values
+    # df['d1'] = df.apply(lambda row: d1(row['Stock Price'], row['Strike Price'], row['tau'], row['Risk-Free Rate'], row['Volatility'], D), axis=1)
+    # df['d2'] = df.apply(lambda row: d2(row['Stock Price'], row['Strike Price'], row['tau'], row['Risk-Free Rate'], row['Volatility'], D), axis=1)
+
+    # Calculate call and put option values
 
 # dataset = dataset_handling.data(r"C:\Users\sahil\Desktop\SOC Project\testing\up_option_dataset(1).csv")
 

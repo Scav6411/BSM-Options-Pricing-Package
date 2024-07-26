@@ -1,8 +1,7 @@
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
-# import bsm
-# import greeks
+
 import datetime
 
 def data_preprocessing(csv_file_path):
@@ -29,21 +28,6 @@ def data_preprocessing(csv_file_path):
     current_date = datetime.datetime.now().strftime('%d-%m-%Y')
     df['current_date'].fillna(pd.to_datetime(current_date, format='%d-%m-%Y'), inplace=True)
     
-    # # # Fill missing current_date with the current date
-    # if df['current_date'].str.contains('NaT') == True:
-    #     current_date = datetime.datetime.now().strftime('%d-%m-%Y')
-    #     df['current_date'] = pd.to_datetime(df['current_date'], format='%d-%m-%Y', errors='coerce')
-    #     df['current_date'].fillna(pd.to_datetime(current_date), inplace=True)
-    # else:
-    #     df['current_date'] = pd.to_datetime(df['current_date'], format='%d-%m-%Y', errors='coerce')
-
-    # # Fill missing current_date with the current date
-    # current_date = datetime.datetime.now().strftime('%Y-%m-%d')
-    # df['current_date'] = pd.to_datetime(df['current_date'], format='%Y-%m-%d', errors='coerce')
-    # df['current_date'].fillna(pd.to_datetime(current_date), inplace=True)
-    
-    
-    
     # Calculate the difference in days
     df['days_difference'] = (df['expiry_date'] - df['current_date']).dt.days
     
@@ -65,12 +49,6 @@ def data_preprocessing(csv_file_path):
         
         r = row['Risk-Free Rate'] / 100  # Convert percentage to decimal
 
-        # if 'Dividend Yield' in df.index:
-        #     D = row['Dividend Yield'] / 100  # Convert percentage to decimal
-        # else:
-        #     df['Dividend Yield'] = 0
-
-
         sigma = row['Volatility'] / 100  # Convert percentage to decimal
 
         
@@ -91,6 +69,26 @@ def data_preprocessing(csv_file_path):
     # Create a DataFrame with the results
     results_df = pd.DataFrame(results, index=df.index)
     return results_df
+
+
+        # if 'Dividend Yield' in df.index:
+        #     D = row['Dividend Yield'] / 100  # Convert percentage to decimal
+        # else:
+        #     df['Dividend Yield'] = 0
+
+    # # # Fill missing current_date with the current date
+    # if df['current_date'].str.contains('NaT') == True:
+    #     current_date = datetime.datetime.now().strftime('%d-%m-%Y')
+    #     df['current_date'] = pd.to_datetime(df['current_date'], format='%d-%m-%Y', errors='coerce')
+    #     df['current_date'].fillna(pd.to_datetime(current_date), inplace=True)
+    # else:
+    #     df['current_date'] = pd.to_datetime(df['current_date'], format='%d-%m-%Y', errors='coerce')
+
+    # # Fill missing current_date with the current date
+    # current_date = datetime.datetime.now().strftime('%Y-%m-%d')
+    # df['current_date'] = pd.to_datetime(df['current_date'], format='%Y-%m-%d', errors='coerce')
+    # df['current_date'].fillna(pd.to_datetime(current_date), inplace=True)
+
 
 # dataset = data_preprocessing(r"C:\Users\sahil\Desktop\SOC Project\testing\up_option_dataset(1).csv")
 

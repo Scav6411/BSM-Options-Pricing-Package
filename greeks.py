@@ -8,40 +8,6 @@ import dataset_handling
 global D
 D = 0
 
-# def d1(S, E, tau, r, sigma, D):
-#     TT = T/365
-#     tt = t/365
-#     r = r/100
-#     D = D/100
-#     a = np.log(S/E)
-#     b = (r-D+(0.5*(sigma**2)))*(tau)
-#     c = sigma*np.sqrt(tau)
-#     d1 = (a + b)/c
-#     return d1
-
-# def d2(S, E, tau, r, sigma, D):
-#     TT = T/365
-#     tt = t/365
-#     r = r/100
-#     D = D/100
-#     p = np.log(S/E)
-#     q = (r-D+(0.5*(sigma**2)))*(tau)
-#     r = sigma*np.sqrt(tau)
-#     d1 = (p + q)/r
-#     d2 = d1 - (sigma*np.sqrt(tau))
-#     return d2
-
-# # N() --> Cumulative distribution function (CDF) of the standard normal distribution
-# # derv_N() --> (Derivative of N() func)Probability density function (PDF) of the standard normal distribution
-
-# def N(d):
-#     mean = 0
-#     std_dev = 1
-#     cdf = stats.norm.cdf(d, mean, std_dev)
-#     return cdf
-
-D = 0
-
 def derv_N(d):
     mean = 0
     std_dev = 1
@@ -189,6 +155,39 @@ def greek_calculations(csv, csv_file_path = None ,input_data=None):
         else:
             raise ValueError("Input data is None. Please provide valid input values.")
         
+
+# def d1(S, E, tau, r, sigma, D):
+#     TT = T/365
+#     tt = t/365
+#     r = r/100
+#     D = D/100
+#     a = np.log(S/E)
+#     b = (r-D+(0.5*(sigma**2)))*(tau)
+#     c = sigma*np.sqrt(tau)
+#     d1 = (a + b)/c
+#     return d1
+
+# def d2(S, E, tau, r, sigma, D):
+#     TT = T/365
+#     tt = t/365
+#     r = r/100
+#     D = D/100
+#     p = np.log(S/E)
+#     q = (r-D+(0.5*(sigma**2)))*(tau)
+#     r = sigma*np.sqrt(tau)
+#     d1 = (p + q)/r
+#     d2 = d1 - (sigma*np.sqrt(tau))
+#     return d2
+
+# # N() --> Cumulative distribution function (CDF) of the standard normal distribution
+# # derv_N() --> (Derivative of N() func)Probability density function (PDF) of the standard normal distribution
+
+# def N(d):
+#     mean = 0
+#     std_dev = 1
+#     cdf = stats.norm.cdf(d, mean, std_dev)
+#     return cdf
+
 
 # dataset = dataset_handling.data_preprocessing(r"C:\Users\sahil\Desktop\SOC Project\testing\up_option_dataset(1).csv")
 
