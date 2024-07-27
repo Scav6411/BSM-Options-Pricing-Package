@@ -39,7 +39,7 @@ The key formulas in the Black-Scholes-Merton model are used to calculate the pri
 #### Call Option Price
 The price of a European call option \( C \) is given by:
 
-
+![Screenshot](https://github.com/calm534/BSM-Options-Pricing-Package/blob/main/ref_pics/Screenshot%202024-07-01%20052339.png)
 
 <!-- \[ C = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2) \] -->
 where:
