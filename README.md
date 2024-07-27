@@ -38,32 +38,7 @@ The key formulas in the Black-Scholes-Merton model are used to calculate the pri
 
 ### Call Option Price:
 The price of a European call option \( C \) is given by:
-The value of a call option (C) according to the Black-Scholes model is given by the formula:
 
-$$
-C = S_0 \Phi(d_1) - X e^{-rT} \Phi(d_2)
-$$
-
-where:
-
-$$
-d_1 = \frac{\ln\left(\frac{S_0}{X}\right) + \left(r + \frac{\sigma^2}{2}\right)T}{\sigma \sqrt{T}}
-$$
-
-$$
-d_2 = d_1 - \sigma \sqrt{T}
-$$
-
-- \( C \) is the call option price
-- \( S_0 \) is the current stock price
-- \( X \) is the strike price
-- \( r \) is the risk-free interest rate
-- \( T \) is the time to maturity (expiry time - current time)
-- \( \sigma \) is the volatility of the stock
-- \( \Phi \) is the cumulative distribution function of the standard normal distribution
-
-
-The terms \( d_1 \) and \( d_2 \) are intermediate calculations used to simplify the expression.
 
 
 <!-- \[ C = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2) \] -->
