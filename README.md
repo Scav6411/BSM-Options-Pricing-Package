@@ -1,17 +1,17 @@
 # BSM-Options-Pricing-Package
 A Python package for pricing of options using BSM (Black Scholes Mertens model).
 
-## Resources
+<!-- ## Resources -->
 
-### About a Python Package
+<!-- ### About a Python Package
 - [What is a Python Package?](https://www.udacity.com/blog/2021/01/what-is-a-python-package.html)
 - [Difference Between Module and Package in Python](https://www.shiksha.com/online-courses/articles/difference-between-module-and-package-in-python/)
-<!-- - [Python Packaging Projects](https://packaging.python.org/en/latest/tutorials/packaging-projects/) -->
-- [PyPI](https://pypi.org/)
+- [Python Packaging Projects](https://packaging.python.org/en/latest/tutorials/packaging-projects/) -->
+<!-- - [PyPI](https://pypi.org/) -->
 
 
 
-# BSM-Options-Pricing-Package
+<!-- # BSM-Options-Pricing-Package -->
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -38,7 +38,10 @@ The key formulas in the Black-Scholes-Merton model are used to calculate the pri
 
 #### Call Option Price
 The price of a European call option \( C \) is given by:
-\[ C = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2) \]
+
+
+
+<!-- \[ C = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2) \] -->
 where:
 - \( S_0 \) is the current price of the underlying asset
 - \( K \) is the strike price
