@@ -48,7 +48,7 @@ def plot_greeks(csv_file_path, greeks_to_plot):
     plt.tight_layout()
     plt.show()
 
-plot_greeks(csv_file_path=r"C:\Users\sahil\Desktop\SOC Project\testing\plot_testing.csv", greeks_to_plot=['call_theta','gamma'])
+# plot_greeks(csv_file_path=r"C:\Users\sahil\Desktop\SOC Project\testing\plot_testing.csv", greeks_to_plot=['call_theta','gamma'])
 
 # def d1(S, E, T, r, t, D,sigma):
 #     TT = T/365

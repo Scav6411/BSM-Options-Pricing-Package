@@ -1,17 +1,17 @@
 # BSM-Options-Pricing-Package
 A Python package for pricing of options using BSM (Black Scholes Mertens model).
 
-## Resources
+<!-- ## Resources -->
 
-### About a Python Package
+<!-- ### About a Python Package
 - [What is a Python Package?](https://www.udacity.com/blog/2021/01/what-is-a-python-package.html)
 - [Difference Between Module and Package in Python](https://www.shiksha.com/online-courses/articles/difference-between-module-and-package-in-python/)
-<!-- - [Python Packaging Projects](https://packaging.python.org/en/latest/tutorials/packaging-projects/) -->
-- [PyPI](https://pypi.org/)
+- [Python Packaging Projects](https://packaging.python.org/en/latest/tutorials/packaging-projects/) -->
+<!-- - [PyPI](https://pypi.org/) -->
 
 
 
-# BSM-Options-Pricing-Package
+<!-- # BSM-Options-Pricing-Package -->
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -20,10 +20,10 @@ A Python package for pricing of options using BSM (Black Scholes Mertens model).
    - [Key Formulas](#key-formulas)
 3. [Features](#features)
 4. [Installation](#installation)
-5. [Usage](#usage)
 6. [Modules](#modules)
 7. [Team Members](#team-members)
-8. [Results](#results)
+<!-- 5. [Usage](#usage) -->
+<!-- 8. [Results](#results) -->
 
 ## Introduction
 The **BSM-Options-Pricing-Package** is a comprehensive toolkit for pricing options using the Black-Scholes-Merton (BSM) model. This package includes functionalities for calculating option prices, handling datasets, computing Greeks, and visualizing results. It is designed for ease of use, flexibility, and accuracy, making it a valuable resource for financial analysts, quants, and researchers.
@@ -36,51 +36,135 @@ The Black-Scholes-Merton model, developed by Fischer Black, Myron Scholes, and R
 ### Key Formulas
 The key formulas in the Black-Scholes-Merton model are used to calculate the prices of call and put options as well as the Greeks, which are sensitivities of the option price to various factors.
 
-#### Call Option Price
+### Call Option Price:
 The price of a European call option \( C \) is given by:
-\[ C = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2) \]
-where:
+
+
+
+<!-- \[ C = S_0 \Phi(d_1) - K e^{-rT} \Phi(d_2) \] -->
+<!-- where:
 - \( S_0 \) is the current price of the underlying asset
 - \( K \) is the strike price
 - \( r \) is the risk-free interest rate
 - \( T \) is the time to maturity
-- \( \Phi \) is the cumulative distribution function of the standard normal distribution
+- \( \Phi \) is the cumulative distribution function of the standard normal distribution -->
 - \( d_1 \) and \( d_2 \) are calculated as:
-  \[ d_1 = \frac{\ln(S_0/K) + (r + \sigma^2 / 2)T}{\sigma \sqrt{T}} \]
-  \[ d_2 = d_1 - \sigma \sqrt{T} \]
+$$
+d_1 = \frac{\ln\left(\frac{S_0}{X}\right) + \left(r + \frac{\sigma^2}{2}\right)T}{\sigma \sqrt{T}}
+$$
 
-#### Put Option Price
+$$
+d_2 = d_1 - \sigma \sqrt{T}
+
+
+$$
+
+
+
+### Put Option Price:
 The price of a European put option \( P \) is given by:
-\[ P = K e^{-rT} \Phi(-d_2) - S_0 \Phi(-d_1) \]
 
-#### Greeks
+The value of a put option (P) is given by the formula:
+
+$$
+P = X e^{-rT} \Phi(-d_2) - S_0 \Phi(-d_1)
+$$
+
+where \( d_1 \) and \( d_2 \) are the same as defined above.
+
+# Greeks
 The Greeks are partial derivatives of the option price with respect to various parameters. They provide insights into the sensitivities and risks associated with options.
 
-- **Delta** (\( \Delta \)): Sensitivity of the option price to changes in the underlying asset price.
-  \[ \Delta_{call} = \Phi(d_1) \]
-  \[ \Delta_{put} = \Phi(d_1) - 1 \]
+## Delta 
+The delta measures the sensitivity of the option price to changes in the price of the underlying asset.
 
-- **Gamma** (\( \Gamma \)): Sensitivity of Delta to changes in the underlying asset price.
-  \[ \Gamma = \frac{\phi(d_1)}{S_0 \sigma \sqrt{T}} \]
-  where \( \phi \) is the probability density function of the standard normal distribution.
+#### Call Option Delta
 
-- **Theta** (\( \Theta \)): Sensitivity of the option price to the passage of time.
-  \[ \Theta_{call} = -\frac{S_0 \phi(d_1) \sigma}{2\sqrt{T}} - rK e^{-rT} \Phi(d_2) \]
-  \[ \Theta_{put} = -\frac{S_0 \phi(d_1) \sigma}{2\sqrt{T}} + rK e^{-rT} \Phi(-d_2) \]
+$$
+\Delta_{call} = \Phi(d_1)
+$$
 
-- **Vega** (\( \nu \)): Sensitivity of the option price to changes in volatility.
-  \[ \nu = S_0 \phi(d_1) \sqrt{T} \]
+#### Put Option Delta
 
-- **Rho** (\( \rho \)): Sensitivity of the option price to changes in the risk-free interest rate.
-  \[ \rho_{call} = K T e^{-rT} \Phi(d_2) \]
-  \[ \rho_{put} = -K T e^{-rT} \Phi(-d_2) \]
+$$
+\Delta_{put} = \Phi(d_1) - 1
+$$
 
-## Features
+<!-- - **Gamma**  -->
+## Gamma
+
+Gamma measures the rate of change of delta with respect to changes in the underlying price.
+
+$$
+\Gamma = \frac{\phi(d_1)}{S_0 \sigma \sqrt{T}}
+$$
+
+where phi is the probability density function of the standard normal distribution.
+
+
+## Theta
+
+Theta (\(\Theta\)) measures the sensitivity of the option price to the passage of time.
+
+#### Call Option Theta
+
+$$
+\Theta_{call} = -\frac{S_0 \phi(d_1) \sigma}{2 \sqrt{T}} - rX e^{-rT} \Phi(d_2)
+$$
+
+#### Put Option Theta
+
+$$
+\Theta_{put} = -\frac{S_0 \phi(d_1) \sigma}{2 \sqrt{T}} + rX e^{-rT} \Phi(-d_2)
+$$
+
+## Vega
+
+Vega measures the sensitivity of the option price to changes in the volatility of the underlying asset.
+
+$$
+\text{Vega} = S_0 \phi(d_1) \sqrt{T}
+$$
+
+## Rho
+
+Rho (\(\rho\)) measures the sensitivity of the option price to changes in the risk-free interest rate.
+
+#### Call Option Rho
+
+$$
+\rho_{call} = X T e^{-rT} \Phi(d_2)
+$$
+
+#### Put Option Rho
+
+$$
+\rho_{put} = -X T e^{-rT} \Phi(-d_2)
+$$
+## Features of this Package
 - Calculate European call and put option prices using the BSM model.
 - Compute the Greeks: Delta, Gamma, Theta, Vega, and Rho.
 - Handle and preprocess financial datasets.
 - Visualize option prices and Greeks over various parameters.
 
 ## Installation
-To install the BSM-Options-Pricing-Package, clone the repository and install the required dependencies:
+To install the BSM-Options-Pricing-Package, clone the repository and install the required dependencies: numpy, pandas, scipy.stats, datetime, matplotlib.pyplot.
+
+## Modules
+- dataset_handling.py : The data_preprocessing function processes a CSV file of financial options data, ensuring dates are formatted correctly and missing values are filled. It calculates time to maturity (τ), checks for invalid dates, and extracts key financial parameters to create a results DataFrame. This prepares the data for further option pricing and Greeks calculations.
+
+- bsm.py: The module ensures that the input data is properly formatted, checks for valid dates, and computes the option prices accurately. The option_pricing function can handle both bulk data processing from CSV files and individual option price calculations based on provided input values.
+
+- greeks.py: Processes option data either from a CSV file or individual input values. If csv is True, it reads and preprocesses the data from csv_file_path and calculates Greeks for the DataFrame. If csv is False, it calculates Greeks based on the provided input_data, checking dates and converting rates as needed. The function returns the Greeks as a dictionary or raises errors for invalid inputs.
+
+- visualization.py: This module facilitates visual analysis of option Greeks by generating plots for specified Greeks, helping users understand the impact of different variables on options.
+
+## Team Members:
+
+- [Sahil Umale](https://github.com/calm534)
+- [Saseisdharan](https://github.com/calm534)
+
+#### Mentor:
+
+- [Soham Pandit](https://github.com/calm534)
 
